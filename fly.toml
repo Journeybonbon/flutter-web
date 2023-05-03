@@ -1,6 +1,6 @@
-# fly.toml file generated for flutter-web on 2023-05-03T19:01:01+09:00
+# fly.toml file generated for flutter-git on 2023-05-03T20:29:40+09:00
 
-app = "flutter-web"
+app = "flutter-git"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
@@ -12,7 +12,7 @@ processes = []
 
 [[services]]
   http_checks = []
-  internal_port = 80
+  internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
