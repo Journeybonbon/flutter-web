@@ -13,3 +13,22 @@ jobs:
       - run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+- name: Send slack when failed
+  # 실패했을 때 실행되겠죠?
+  if: ${{ failure() }}
+  # 직접 '만든' Action이므로 uses 키워드를 이용해서 아래 경로를 입력해줍니다.
+  uses: ./.github/actions/slack-notify
+  # 아까 secrets로 접근할 수 있게 만들어놓은 슬랙 url을 여기에 써볼게요.
+  # with 키워드와 함께 slack_incoming_url 값으로 넘겨줍니다.
+  with:
+    slack_incoming_url: ${{ secrets.SLACK_INCOMING_URL }}
+
+- name: Send slack if completed
+  # 성공할 때만 실행되겠죠?
+  if: ${{ success() }}
+  uses: ./.github/actions/slack-notify
+  # status input은 받는 쪽에서 default 값을 정해놨기 때문에 success일 때만 넘겨줄게요.
+  with:
+    status: success
+    slack_incoming_url: ${{ secrets.SLACK_INCOMING_URL }}
