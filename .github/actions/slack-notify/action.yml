@@ -28,7 +28,7 @@ runs:
       # shell이라는 키워드에 bash라는 값을 입력해줄게요.
       shell: bash
       # run: 뒤에 '|'을 붙여서 스크립트를 여러 줄로 사용할 수 있어요.
-      run: |
+      run:
         # 전달받은 status 값을 이용해서 성공, 실패를 판단하고,
         # 그에 따른 이모티콘을 지정해볼게요.
         if [ "${{ inputs.status }}" = "success" ]; then
